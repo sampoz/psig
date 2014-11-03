@@ -9,7 +9,7 @@ cd images
 echo "create thumbnails from original images"
 for file in *.jpg;do
 	echo "converting file " $file
-	convert $file -resize 20% ../thumbnails/$file; 
+	convert $file -resize 10% -quality 40 ../thumbnails/$file; 
 done
 cd ..
 echo "window.thumbnails = [ " > thumbnails.js
