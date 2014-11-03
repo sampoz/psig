@@ -7,7 +7,10 @@ echo "move images to images folder"
 mv *.jpg images/
 cd images
 echo "create thumbnails from original images"
-for file in *.jpg; do convert $file -resize 20% ../thumbnails/$file; done
+for file in *.jpg;do
+	echo "converting file " $file
+	convert $file -resize 20% ../thumbnails/$file; 
+done
 cd ..
 echo "window.thumbnails = [ " > thumbnails.js
 ls -1 thumbnails | awk '{printf("%s%s%s,\n","\"",$0,"\"")}' >> thumbnails.js
