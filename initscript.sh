@@ -1,9 +1,11 @@
 #! /bin/bash
 echo "make right dirs and make thumbnails"
+mkdir images
 mkdir thumbnails
 #rename all to lowercase TODO
+mv *.jpg images/
 cd images
-for file in *.JPG; do convert $file -resize 20% ../thumbnails/$file; done
+for file in *.jpg; do convert $file -resize 20% ../thumbnails/$file; done
 cd ..
 echo "window.thumbnails = [ " > thumbnails.js
 ls -1 thumbnails | awk '{printf("%s%s%s,\n","\"",$0,"\"")}' >> thumbnails.js
