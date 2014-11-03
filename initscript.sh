@@ -1,10 +1,12 @@
 #! /bin/bash
-echo "make right dirs and make thumbnails"
+echo "create right dirs"
 mkdir images
 mkdir thumbnails
 #rename all to lowercase TODO
+echo "move images to images folder"
 mv *.jpg images/
 cd images
+echo "create thumbnails from original images"
 for file in *.jpg; do convert $file -resize 20% ../thumbnails/$file; done
 cd ..
 echo "window.thumbnails = [ " > thumbnails.js
