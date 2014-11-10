@@ -6,6 +6,8 @@ mkdir thumbnails
 echo "move images to images folder"
 mv *.jpg images/
 cd images
+echo "Rotating images according to exif-data"
+exiftran -ia *
 echo "create thumbnails from original images"
 for file in *.jpg;do
 	echo "converting file " $file
