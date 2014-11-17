@@ -11,6 +11,6 @@ ls -1 images | awk '{printf("%s%s%s,\n","\"",$0,"\"")}' >> images.js
 echo "];" >> images.js
 echo "Creating gif from all the images"
 cd thumbnails
-convert -delay 20 *.JPG -loop 0 all.gif
+convert -background black -gravity center -extent 500x400 -delay 20 *.JPG -loop 0 all.gif
 cd ..
 
