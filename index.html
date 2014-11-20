@@ -4,7 +4,6 @@
         <script type="text/javascript" src="images.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,7 +25,7 @@
         </div>
         <script type="text/javascript"> 
         for (var thumbnail in window.thumbnails){
-            $( "#imgtable" ).append( " <a href=\"images/" + images[thumbnail] + "\"> <img class='thumb' src=\"thumbnails/" +window.thumbnails[thumbnail]+"\"> </a>" );
+            $( "#imgtable" ).append( " <a href=\"images/" + images[thumbnail] + "\"> <img class='thumb' alt=\"Image\"  src=\"thumbnails/" +window.thumbnails[thumbnail]+"\"> </a>" );
         }
         </script>
     </body>
