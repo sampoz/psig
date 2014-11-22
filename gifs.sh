@@ -1,7 +1,6 @@
 #! /bin/bash
 
 # Used to generate gif from all the images, the init script does this too, but in older versions it is faster to run this one.
-
 rm thumbnails/all.gif
 echo "window.thumbnails = [ " > thumbnails.js
 ls -1 thumbnails | awk '{printf("%s%s%s,\n","\"",$0,"\"")}' >> thumbnails.js

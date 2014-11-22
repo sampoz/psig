@@ -1,3 +1,4 @@
 # Following packages are needed:
 imagemagick
 exiftran
+libav-tools or ffmpeg
