@@ -13,7 +13,7 @@
         <title> PSIG, Plain Simple Image Gallery</title>
     </head>
     <body>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/vendor/jquery-1.11.1.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
         <script src="js/bootstrap.min.js"></script>
         
@@ -24,8 +24,8 @@
             </ul>
         </div>
         <script type="text/javascript"> 
-        for (var thumbnail in window.thumbnails){
-            $( "#imgtable" ).append( " <a href=\"images/" + images[thumbnail] + "\"> <img class='thumb' alt=\"Image\"  src=\"thumbnails/" +window.thumbnails[thumbnail]+"\"> </a>" );
+        for (var thumbnail in window.thumbnails) {
+            $( "#imgtable" ).append( " <a href=\"image.html?image=" + images[thumbnail] + "\" > <img class='thumb' alt=\"Image\"  src=\"thumbnails/" + window.thumbnails[thumbnail] + "\"> </a>" );
         }
         </script>
     </body>

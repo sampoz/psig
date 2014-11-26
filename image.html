@@ -13,18 +13,60 @@
         <title> PSIG, Plain Simple Image Gallery</title>
     </head>
     <body>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/vendor/jquery-1.11.1.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
         <script src="js/bootstrap.min.js"></script>
         
         <h1>Welcome to PSIG</h1>
         <div>
             <ul id="imgtable">
-           	<a href="thumbnails/all.gif"> <img class='thumb' src="thumbnails/all.gif">      
+           	      
             </ul>
         </div>
         <script type="text/javascript"> 
-        <-- TODO Get image name from url -->
+        function getUrlParameter(sParam)
+        {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) 
+                {
+                    return sParameterName[1];
+                }
+            }
+        }  
+        function moveLeft() {
+            var currentId = window.images.indexOf(currentImage);
+            alert(currentId);
+            if (currentId != -1) {
+                if(currentId - window.images.length < 0) { // there are images left 
+                    currentImage = window.images[currentId-1];   
+                }
+            }
+        }
+        function moveRight() {
+            var currentId = window.images.indexOf(currentImage);
+            alert(currentId);
+            if (currentId != -1) {
+                if(window.images.length - currentId > 0) { // there are images right 
+                    currentImage = window.images[currentId+1];   
+                }
+            }
+        }
+        var currentImage = getUrlParameter("image");
+        $( "#imgtable" ).append( "<img class='image' id=\"mainImage\" alt=\"Image\"  src=\"images/" + currentImage + "\"> </a>" );
+        $( "body" ).keydown(function(e) {
+            if(e.keyCode == 37) { // left
+                moveLeft();
+                $("#mainImage").replaceWith("<img class='image' id=\"mainImage\" alt=\"Image\"  src=\"images/" + currentImage + "\"> </a>");
+              }
+              else if(e.keyCode == 39) { // right
+                moveRight();
+                $("#mainImage").replaceWith("<img class='image' id=\"mainImage\" alt=\"Image\"  src=\"images/" + currentImage + "\"> </a>"); 
+              }
+            });
         </script>
     </body>
 </html>
