@@ -17,7 +17,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
         <script src="js/bootstrap.min.js"></script>
         
-        <h1>Welcome to PSIG</h1>
+        <h1>Single image view, navigate with left and right arrow</h1>
         <div>
             <ul id="imgtable">
            	      
@@ -39,18 +39,22 @@
         }  
         function moveLeft() {
             var currentId = window.images.indexOf(currentImage);
-            alert(currentId);
             if (currentId != -1) {
-                if(currentId - window.images.length < 0) { // there are images left 
+                if( window.images.length - currentId < window.images.length ) { // there are images left 
                     currentImage = window.images[currentId-1];   
+                }
+                else {
+                    alert("Ran out of images, sorry :(");
                 }
             }
         }
         function moveRight() {
             var currentId = window.images.indexOf(currentImage);
             if (currentId != -1) {
-                if(window.images.length - currentId > 0) { // there are images right 
+                if(window.images.length - currentId > 1) { // there are images right 
                     currentImage = window.images[currentId+1];   
+                } else {
+                    alert("Ran out of images, sorry :(");
                 }
             }
         }
