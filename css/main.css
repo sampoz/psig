@@ -6,6 +6,9 @@
 .thumb {
     border-radius: 20px;
 }
+.image-preload {
+	display: none;
+}
 
 
 
