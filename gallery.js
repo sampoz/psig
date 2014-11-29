@@ -27,18 +27,22 @@ function fillImages() {
 }
 
 function updateImages() {
-// Delete old images
-    $( "#imgtable" ).empty();
 // Load News ones
     $('<img id="mainImage" class="image" src="images/'+ currentImage +'">').load(function() {
-      $(this).appendTo('#imgtable'); 
+      $("#mainImage").replaceWith(this); 
     });
     $('<img id="nextImage" class="image-preload" src="images/'+ nextImage +'">').load(function() {
-      $(this).appendTo('#imgtable'); 
+      $("#nextImage").replaceWith(this); 
     });
     $('<img id="previousImage" class="image-preload" src="images/'+ previousImage +'">').load(function() {
-        $(this).appendTo('#imgtable'); 
+      $("#previousImage").replaceWith(this); 
     });
+    // $('<img id="nextImage" class="image-preload" src="images/'+ nextImage +'">').load(function() {
+    //   $(this).appendTo('#imgtable'); 
+    // });
+    // $('<img id="previousImage" class="image-preload" src="images/'+ previousImage +'">').load(function() {
+    //     $(this).appendTo('#imgtable'); 
+    // });
 }
 function getImage(current, direction) {
     var currentId = window.images.indexOf(current);
