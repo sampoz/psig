@@ -37,18 +37,12 @@ function updateImages() {
     $('<img id="previousImage" class="image-preload" src="images/'+ previousImage +'">').load(function() {
       $("#previousImage").replaceWith(this); 
     });
-    // $('<img id="nextImage" class="image-preload" src="images/'+ nextImage +'">').load(function() {
-    //   $(this).appendTo('#imgtable'); 
-    // });
-    // $('<img id="previousImage" class="image-preload" src="images/'+ previousImage +'">').load(function() {
-    //     $(this).appendTo('#imgtable'); 
-    // });
 }
 function getImage(current, direction) {
     var currentId = window.images.indexOf(current);
     if (currentId != -1) {
         if (direction == "next"){
-            if(window.images.length - currentId > 1) { // There can be a next image 
+            if(window.images.length - currentId > 1) { // There is a next image 
                 return window.images[currentId+1];   
             } 
 
