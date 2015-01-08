@@ -1,6 +1,6 @@
-var currentImage = getUrlParameter("image");
-var nextImage = getImage(currentImage, "next");
-var previousImage = getImage(currentImage, "previous"); 
+var currentImage =  {"id":"mainImage", "class":"image", "name":getUrlParameter("image")};  
+var nextImage = {"id":"nextImage", "class":"image-preload", "name":getImage(currentImage.name, "next")};
+var previousImage = {"id":"previousImage", "class":"image-preload", "name":getImage(currentImage.name, "previous")}; 
 fillImages();
 $( "body" ).keydown(function(e) {
             if(e.keyCode == 37) { // left
@@ -15,29 +15,45 @@ $( "body" ).keydown(function(e) {
 
 function fillImages() {
 // Fill in the current image and preload the next and previous
-    $('<img id="mainImage" class="image" src="images/'+ currentImage +'">').load(function() {
-      $(this).appendTo('#imgtable'); 
-    });
-    $('<img id="nextImage" class="image-preload" src="images/"'+ nextImage +'">').load(function() {
-      $(this).appendTo('#imgtable'); 
-    });
-    $('<img id="previousImage" class="image-preload" src="images/"'+ previousImage +'">').load(function() {
+    fillImage(currentImage);
+    fillImage(nextImage);
+    fillImage(previousImage);
+}
+function fillImage(image) {
+    if(checkIfVideo(image.name)){
+        fillVideo(image);
+    } else {
+        $('<img id="' + image.id + '" class="' + image.class + '" src="images/'+ image.name +'">').load(function() {
         $(this).appendTo('#imgtable'); 
-    });
+        });
+    }    
+}
+
+function fillVideo(video) {
+      $('<video id="' + video.id + '" width="1280" height="720" class="' + video.class + '" controls > <source src="images/'+ video.name +'" type="video/webm"> Your browser does not support the video tag. </video>').appendTo("#imgtable");
+}
+
+function updateVideo(video) {
+      $("#"+video.id).replaceWith('<video id="' + video.id + '" width="320" height="240" class="' + video.class + '" controls > <source src="images/'+ video.name +'" type="video/webm"> Your browser does not support the video tag. </video>'); 
 }
 
 function updateImages() {
 // Load News ones
-    $('<img id="mainImage" class="image" src="images/'+ currentImage +'">').load(function() {
-      $("#mainImage").replaceWith(this); 
-    });
-    $('<img id="nextImage" class="image-preload" src="images/'+ nextImage +'">').load(function() {
-      $("#nextImage").replaceWith(this); 
-    });
-    $('<img id="previousImage" class="image-preload" src="images/'+ previousImage +'">').load(function() {
-      $("#previousImage").replaceWith(this); 
-    });
+    updateImage(currentImage);
+    updateImage(nextImage);
+    updateImage(previousImage);
 }
+
+function updateImage(image) {
+    if(checkIfVideo(image.name)){
+        updateVideo(image);
+    } else {
+        $('<img id="' + image.id + '" class="' + image.class + '" src="images/'+ image.name +'">').load(function() {
+          $("#"+image.id).replaceWith(this); 
+        });
+    }
+}
+
 function getImage(current, direction) {
     var currentId = window.images.indexOf(current);
     if (currentId != -1) {
@@ -66,16 +82,22 @@ function getUrlParameter(sParam) {
     }
 }  
 function previous() {
-    var tmp         = getImage(currentImage, "previous");
-    if (!tmp) alert("First Image");
-    nextImage       = currentImage; 
-    currentImage    = previousImage;
-    previousImage   = tmp;
+    var tmp         = getImage(previousImage.name, "previous");
+    nextImage.name      = currentImage.name; 
+    currentImage.name   = previousImage.name;
+    previousImage.name  = tmp;
+    if(!currentImage.name) alert("First Image");
         }
 function next() {
-    var tmp         = getImage(currentImage, "next");
-    if (!tmp) alert("Last Image");
-    previousImage   = currentImage;
-    currentImage    = nextImage;
-    nextImage       = tmp; 
+    var tmp         = getImage(nextImage.name, "next");
+    previousImage.name   = currentImage.name;
+    currentImage.name    = nextImage.name;
+    nextImage.name       = tmp; 
+    if (!currentImage.name) alert("Last Image");
+}
+function checkIfVideo(name){
+    if (name.indexOf(".AVI") != -1 || name.indexOf(".avi") != -1) {
+        return true;
+    }
+    return false;
 }

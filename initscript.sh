@@ -1,16 +1,22 @@
 #! /bin/bash
 # Image and movie filetypes
-filetypes=('*.jpg' '*.JPG' '*.avi' '*.AVI')
-movietypes=('*.avi' '*.JPG')
+filetypes=('*.jpg' '*.JPG' '*.webm')
+movietypes=('*.avi' '*.AVI')
 echo "create right dirs"
 mkdir images
 mkdir thumbnails
 
 echo "Create a title image from movies"
 for movietype in ${movietypes[*]};do
-	avconv -i $movietype -f image2 -vframes 1 image_$movietype
-        mv $movietypes images/ 
+	avconv -i $movietype -f image2 -vframes 1 image_$movietype.jpg
+	convert image_$movietype.jpg -resize 9% -quality 90 ./thumbnails/image_$movietype.jpg;
+	rm image_$movietype.jpg
 done
+echo "Encode movies to webM"
+for movietype in ${movietypes[*]};do 
+	avconv -i $movietype -c:v libvpx -crf 10 -b:v 1M -c:a libvorbis $movietype.webm
+done
+
 
 echo "move images to images folder"
 for filetype in ${filetypes[*]};do
