@@ -16,8 +16,8 @@ $( "body" ).keydown(function(e) {
 function fillImages() {
 // Fill in the current image and preload the next and previous
     fillImage(currentImage);
-    fillImage(nextImage);
-    fillImage(previousImage);
+    if(nextImage.name) fillImage(nextImage);
+    if(previousImage.name) fillImage(previousImage);
 }
 function fillImage(image) {
     if(checkIfVideo(image.name)){
@@ -40,8 +40,8 @@ function updateVideo(video) {
 function updateImages() {
 // Load News ones
     updateImage(currentImage);
-    updateImage(nextImage);
-    updateImage(previousImage);
+    if(nextImage.name) updateImage(nextImage);
+    if(previousImage.name) updateImage(previousImage);
 }
 
 function updateImage(image) {

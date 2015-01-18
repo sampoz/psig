@@ -1,4 +1,4 @@
 # Following packages are needed:
 imagemagick
 exiftran
-libav-tools or ffmpeg
+libav-tools or ffmpeg (remember to change avconv to ffmpeg in the scripts!)

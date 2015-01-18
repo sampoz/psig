@@ -8,9 +8,10 @@ mkdir thumbnails
 
 echo "Create a title image from movies"
 for movietype in ${movietypes[*]};do
-	avconv -i $movietype -f image2 -vframes 1 image_$movietype.jpg
-	convert image_$movietype.jpg -resize 9% -quality 90 ./thumbnails/image_$movietype.jpg;
-	rm image_$movietype.jpg
+	avconv -i $movietype -f image2 -vframes 1 $movietype.png
+	convert $movietype.png -resize 30% -quality 90 $movietype.png;
+	composite -compose atop -gravity center ./video_watermark.png $movietype.png ./thumbnails/$movietype.png
+	rm image_$movietype.png
 done
 echo "Encode movies to webM"
 for movietype in ${movietypes[*]};do 
