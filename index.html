@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href="css/bootstrap.css" rel="stylesheet">
-
         <link rel="stylesheet" href="css/main.css">
         <title> PSIG, Plain Simple Image Gallery</title>
     </head>
@@ -16,17 +15,14 @@
         <script src="js/vendor/jquery-1.11.1.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
         <script src="js/bootstrap.min.js"></script>
-        
+        <script type="text/javascript" src="index.js"></script>
         <h1>Welcome to PSIG</h1>
         <div>
             <ul id="imgtable">
-           	<a href="thumbnails/all.gif"> <img class='thumb' src="thumbnails/all.gif">      
+           	<a href="thumbnails/all.gif"> <img class='thumb' src="thumbnails/all.gif"> </a> 
             </ul>
+            <button onclick="nextPage()"> Next Page </button>
         </div>
-        <script type="text/javascript"> 
-        for (var thumbnail in window.thumbnails) {
-            $( "#imgtable" ).append( " <a href=\"image.html?image=" + images[thumbnail] + "\" > <img class='thumb' alt=\"Image\"  src=\"thumbnails/" + window.thumbnails[thumbnail] + "\"> </a>" );
-        }
-        </script>
+        
     </body>
 </html>
