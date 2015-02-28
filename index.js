@@ -9,7 +9,13 @@ function nextPage(){
 	window.endPhoto += pageSize;
 	drawPage();
 }
+function prevPage(){
+	window.startPhoto -= pageSize;
+	window.endPhoto -= pageSize;
+	drawPage();
+}
 function drawPage(){
+	$( "#imgtable" ).html(""); // Clear the images
 	var lastPhoto;
 	if (thumbnails.length < endPhoto) {
 		lastPhoto = window.thumbnails.length   
