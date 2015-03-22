@@ -1,5 +1,5 @@
 window.startPhoto = 0;
-window.pageSize = 2;
+window.pageSize = 400;
 window.endPhoto = startPhoto + pageSize;
 $(document).ready(function () {
 	drawPage();
