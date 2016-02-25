@@ -1,6 +1,6 @@
 #! /bin/bash
 # Image and movie filetypes
-filetypes=('*.jpg' '*.JPG' '*.webm')
+filetypes=('*.jpg' '*.JPG' '.png' '.PNG' '*.webm')
 movietypes=('*.avi' '*.AVI' '*.MOV')
 echo "create right dirs"
 mkdir images
